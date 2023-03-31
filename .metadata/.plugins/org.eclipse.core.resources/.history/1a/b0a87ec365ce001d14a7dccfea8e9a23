@@ -1,0 +1,20 @@
+package UserDao;
+
+import javax.persistence.EntityManager;
+
+import org.apache.catalina.User;
+
+import utility.JpaUtils;
+
+public class UserDao {
+    private EntityManager em = JpaUtils.getEntityManager();
+    @Override
+    protected void finalize() throws Throwable{
+    	em.close();
+    	super.finalize();
+    	
+    }
+    public User create(User) {
+    	
+    }
+}

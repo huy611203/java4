@@ -1,0 +1,11 @@
+
+Mar 11, 2023 07:10:53.528 NEW SESSION
+Mar 11, 2023 07:10:53.528 [19180:10484:0311/071053.528:ERROR:api_wrapper.cc(102)] Calling IsEnclaveTypeSupported, error code 0
+Mar 11, 2023 07:10:53.583 [19180:10484:0311/071053.583:ERROR:assistance_home_client.cc(32)] File path C:\Users\bhuy9\AppData\Local\Microsoft\Edge\User Data\Default
+Mar 11, 2023 07:10:58.806 [19180:10484:0311/071058.806:ERROR:device_event_log_impl.cc(218)] [07:10:58.806] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Mar 11, 2023 07:10:58.807 [19180:10484:0311/071058.807:ERROR:device_event_log_impl.cc(218)] [07:10:58.807] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Mar 11, 2023 07:11:05.982 [19180:17520:0311/071105.981:ERROR:get_updates_processor.cc(313)] PostClientToServerMessage() failed during GetUpdates with error 103
+Mar 11, 2023 07:11:06.327 [14024:20396:0311/071106.326:ERROR:api_wrapper.cc(102)] Calling IsEnclaveTypeSupported, error code 0
+Mar 11, 2023 07:11:06.391 [14024:20396:0311/071106.391:ERROR:assistance_home_client.cc(32)] File path C:\Users\bhuy9\AppData\Local\Microsoft\Edge\User Data\Default
+Mar 11, 2023 07:11:11.583 [14024:20396:0311/071111.583:ERROR:device_event_log_impl.cc(218)] [07:11:11.583] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)
+Mar 11, 2023 07:11:11.584 [14024:20396:0311/071111.584:ERROR:device_event_log_impl.cc(218)] [07:11:11.584] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: A device attached to the system is not functioning. (0x1F)

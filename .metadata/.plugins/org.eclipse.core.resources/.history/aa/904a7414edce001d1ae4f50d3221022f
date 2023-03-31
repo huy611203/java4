@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/java4" method="post">
+<div>
+<label for="form" class="form-lable">User</label>
+<input value="$(nguoi.id)" name="id" type="text" class="form-control" id="form">
+</div>
+<div>
+<label for="form" class="form-lable">PassWord</label>
+<input value="$(nguoi.password)" name="id" type="text" class="form-control" id="form">
+</div>
+<div>
+<label for="form" class="form-lable">FullName</label>
+<input value="$(nguoi.fullname)" name="id" type="text" class="form-control" id="form">
+</div>
+<div>
+<label for="form" class="form-lable">Email</label>
+<input value="$(nguoi.email)" name="id" type="text" class="form-control" id="form">
+</div>
+<div>
+<label for="form" class="form-lable">role</label>
+<label class="" ><input${!nguoi.admin?'checked':''}type="radio"name="admin" value="fulse"
+class="form-check-input">Admin</label>
+<label class="" ><input${!nguoi.admin?'checked':''}type="radio"name="admin" value="fulse"
+class="form-check-input">User</label>
+</div>
+
+
+
+
+<br>
+<table>
+<tr>
+<td>User</td>
+<td>FullName</td>
+<td>PassWord</td>
+<td>Email</td>
+<td>HoTen</td>
+<td>click</td>
+</tr>
+<c:forEach var ="item" items="$(items)">
+<tr>
+<td>${ item.id}</td>
+<td>${item.fullname}</td>
+<td>${item.password }</td>
+<td>${item.email}</td>
+<td>${item.admin? 'Admin':'User'}</td>
+<td>
+<a href="/lab5/user/edit?id=${item.id }">Edit</a>
+<a href="/lab5/user/delete?id=${item.id }">Delete</a>
+</td>
+</tr>
+
+</c:forEach>
+</table>
+<center>
+<button formaction="/lab5/user/create">Create</button>
+<button formaction="/lab5/user/update">Update</button>
+
+</center>
+
+</form>
+</body>
+</html>

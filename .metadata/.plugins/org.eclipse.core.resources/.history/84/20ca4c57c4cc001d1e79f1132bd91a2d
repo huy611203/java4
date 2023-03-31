@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style type="<%@ include file="WEB-INF/css/layout.css" %>"></style> 
+</head>
+<body>
+ <div class="container row">
+ <div class="product colum">
+       <div class="productItem">
+       <jsp:include page="item.jsp">
+       <jsp:param value="San Pham 1" name="name"/>
+       </jsp:include>
+       </div>
+              <div class="productItem">
+       <jsp:include page="item.jsp">
+       <jsp:param value="San Pham 1" name="name"/>
+       </jsp:include>
+       </div>
+              <div class="productItem">
+       <jsp:include page="item.jsp">
+       <jsp:param value="San Pham 1" name="name"/>
+       </jsp:include>
+       </div>
+ 
+ </div>
+ </div>
+
+</body>
+</html>

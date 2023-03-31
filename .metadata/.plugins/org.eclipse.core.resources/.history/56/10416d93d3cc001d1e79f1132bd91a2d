@@ -1,0 +1,7 @@
+package Model;
+import java.io.Serializable;
+@Entity
+@Table
+public class Users implements Serializable{
+
+}

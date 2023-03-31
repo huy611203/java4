@@ -1,0 +1,48 @@
+package UserDao;
+
+import javax.persistence.EntityManager;
+
+import org.apache.catalina.User;
+
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import model.Users;
+import utility.JpaUtils;
+
+public class UserDao {
+    private EntityManager em = JpaUtils.getEntityManager();
+    @Override
+    protected void finalize() throws Throwable{
+    	em.close();
+    	super.finalize();
+    	
+    }
+    public User create(User user) {
+    	
+    	// Nạp persistence.xml và tạo EntityManagerFactory
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PolyOE");
+        // Tạo EntityManager để bắt đầu làm việc với CSDL
+        EntityManager em = (EntityManager) emf.createEntityManager();
+        try {
+            em.getTransaction().begin(); // Bắt đầu Transaction
+            // Tạo Entity
+            Users entity = new Users();
+            entity.setId("TeoNV");
+            entity.setFullname("Nguyễn Văn Tèo");
+            entity.setEmail("teonv@gmail.com");
+            entity.setPassword("123456");
+            // Insert vào CSDL
+            em.persist(entity);
+            em.getTransaction().commit(); // Chấp nhận kết quả thao tác
+            System.out.println("Thêm mới thành công!");
+        } catch (Exception e) {
+            em.getTransaction().rollback(); // Hủy thao tác
+            System.out.println("Thêm mới thất bại!");
+        }
+        em.close();
+        emf.close();
+    	
+		return user;
+    	
+    }
+}

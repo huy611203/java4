@@ -1,0 +1,13 @@
+package Model;
+import java.io.Serializable;
+
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.Table;
+
+@Entity
+@Table(name = "Users" )
+
+public class Users implements Serializable{
+
+}

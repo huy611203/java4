@@ -1,0 +1,96 @@
+package UserDao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.apache.catalina.User;
+
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import model.Users;
+import utility.JpaUtils;
+
+public class UserDao {
+    private EntityManager em = JpaUtils.getEntityManager();
+    private EntityTransaction trans = (EntityTransaction) em.getTransaction();
+    @Override
+    protected void finalize() throws Throwable{
+    	em.close();
+    	super.finalize();
+    	
+    }
+    public void create(Users user) {
+    	try {
+    		trans.begin();
+    		em.persist(user);
+    		trans.commit();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		trans.rollback();
+    		throw e;
+    	}finally {
+			em.close();
+		}
+  
+    	
+		
+    	
+    }
+    
+    public void update(Users user) {
+    	try {
+    		trans.begin();
+    		em.merge(user);
+    		trans.commit();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		trans.rollback();
+    		throw e;
+    	}finally {
+			em.close();
+		}
+
+    	
+    }
+    
+    public void remove(String id) throws Exception {
+    try {
+		trans.begin();
+		User user = em.find(User.class, id);
+		if (user != null) {
+			em.remove(user);
+		} else {
+             throw new Exception("Lỗi không tìm thấy User");
+		}
+		trans.commit();
+	} catch (Exception e) {
+	e.printStackTrace();
+	trans.rollback();
+	throw e;
+	}finally {
+		em.close();
+	}
+    
+    }
+    
+    public Users findById(String id) {
+    	Users entity = em.find(Users.class, id);
+    	return entity;
+    }
+    
+    public List<Users> fillAll(){
+
+		String jsql = "SELECT o FROM User o";
+		TypedQuery<Users> query = (TypedQuery<Users>) em.createQuery(jsql,Users.class);
+		List<Users> list = query.getResultList();
+		return list;
+    }
+    
+    
+    
+  
+    
+}

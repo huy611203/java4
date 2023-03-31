@@ -1,0 +1,66 @@
+package DAO;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import Model.Users;
+import Utils.JpaUtils;
+
+public class DAO_Users {
+	
+public void create(Users users) {
+	EntityManager em = JpaUtils.getEntityManager();
+	EntityTransaction tran = em.getTransaction();
+
+	try {
+		//Bắt đầu transaction
+		tran.begin();
+		//Lưu user Vào CSDL
+		em.persist(users);
+		//Chấp nhận kết quả thao tác
+		tran.commit();
+	} catch (Exception e) {
+		e.printStackTrace();
+		tran.rollback();
+		System.out.println("Lỗi trùng id");
+		throw e;
+	}finally {
+		em.close();
+	}
+}
+
+public void delete(String id)throws Exception {
+	EntityManager em = JpaUtils.getEntityManager();
+	EntityTransaction tran = em.getTransaction();
+
+	try {
+		tran.begin();
+        Users users = em.find(Users.class, id);
+        if (users != null) {
+			em.remove(users);
+		} else {
+             throw new Exception("xóa lại đi xem nào ");
+		}
+        tran.commit();
+	} catch (Exception e) {
+		e.printStackTrace();
+		tran.rollback();
+		System.out.println("Lỗi trùng id");
+		throw e;
+	}finally {
+		em.close();
+	}
+}
+public List<Users>findAll(){
+	EntityManager em = JpaUtils.getEntityManager();
+	//Lấy câu lệnh finAll có sẵn lúc tạo lớp users
+	//cách 1
+	TypedQuery<Users> query = em.createNamedQuery(Users, findAll());
+	return null;
+}
+
+
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence-unit name="PolyOE">
+  <properties>
+    <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+    <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost;database=PolyOE" />
+    <property name="javax.persistence.jdbc.user" value="sa" />
+    <property name="javax.persistence.jdbc.password" value="123" />
+  </properties>
+</persistence-unit>

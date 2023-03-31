@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <form action="/lab6_demo/findvideo"method="post">
+   <input name="username"/><button>Search</button>
+   </form>
+   <div>
+   <p>Fullname: ${user.fullname }</p>
+   <p>Email: ${user.email }</p>
+   </div>
+   <table border="1">
+        <thead>
+        <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Views</th>
+        <th>Active</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var = "item" items="${favorites }">
+        
+        
+        </c:forEach>
+        
+        
+        </tbody>
+   </table>
+</body>
+</html>

@@ -1,0 +1,125 @@
+package userServlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+
+import UserDao.UserDao;
+import model.Users;
+
+
+@WebServlet({"/UserServlet",
+	"/UserServlet/edit/*",
+	"/UserServlet/create",
+	"/UserServlet/update",
+	"/UserServlet/delete"})
+public class UserServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public UserServlet() {
+        super();
+   
+    }
+
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURL().toString();
+		Users nd = null;
+		if (uri.contains("edit")) {
+		   edit(request, response);
+		}else if (uri.contains("delete")) {
+			delete(request,response);
+		}else if (uri.contains("delete")) {
+			insert(request, response);
+		}
+	    
+		
+		
+		fillTable(request, response);
+		request.getRequestDispatcher("/view/user.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		
+		
+		
+		
+		
+		doGet(request, response);
+	}
+    
+	protected void insert(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		try {
+		    System.out.println("huy");
+            Users us = new Users();
+            BeanUtils.populate(us, request.getParameterMap());
+            UserDao dao = new UserDao();
+            dao.insert(us);
+            request.setAttribute("message", "Nhập thành công");
+		} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("error", "Lỗi");
+		}
+	}
+	protected void edit(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		try {
+			String userid = request.getParameter("id");
+			UserDao dao = new UserDao();
+			Users us = dao.findById(userid);
+			request.setAttribute("nguoi", us);;
+		} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("error", "Lỗi");
+		}
+	}
+	protected void delete(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		try {
+		String userid = request.getParameter("id");
+		UserDao dao = new UserDao();
+		dao.delete(userid);
+		request.setAttribute("message", "Xóa thành công");
+		} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("error", "Lỗi");
+		}
+	}
+	
+	protected void fillTable(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		try {
+			UserDao dao = new UserDao();
+			java.util.List<Users> list = dao.fillAll();
+			request.setAttribute("item",list);
+		} catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("error", "Lỗi");
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

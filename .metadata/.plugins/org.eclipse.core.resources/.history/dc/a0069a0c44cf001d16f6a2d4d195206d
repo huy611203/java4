@@ -1,0 +1,5 @@
+package poly.edu.untility;
+
+public class JpaUtils {
+
+}

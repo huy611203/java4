@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>home</title>
+<style><<%@include file="WEB-INF/css/layout/layout.css"%>></style>
+</head>
+<body>
+<div class="logo">Online Shopping Mall</div>
+</body>
+</html>
