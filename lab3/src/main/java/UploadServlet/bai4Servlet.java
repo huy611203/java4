@@ -38,7 +38,7 @@ public class bai4Servlet extends HttpServlet {
 		final String username = "bhuy94809@gmail.com";
         final String password = "lmdejwqsnntnkeed";
 
-        String to = "buih29926@gmail.com";
+        String to = "trang22032005@gmail.com";
 
         // Địa chỉ email người gửi
         String from = "bhuy94809@gmail.com";
@@ -73,7 +73,7 @@ public class bai4Servlet extends HttpServlet {
 
             // Thiết lập địa chỉ email người nhận
             message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("buih29926@gmail.com"));
+                InternetAddress.parse("trang22032005@gmail.com"));
 
             // Thiết lập tiêu đề email
             message.setSubject(request.getParameter("mmail"));

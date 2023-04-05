@@ -1,0 +1,65 @@
+package poly.edu.Servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import poly.edu.model.User;
+import poly.edu.model.Video;
+import poly.edu.model.Favorite;
+import poly.edu.repo.Bai2repo ;
+
+
+
+@WebServlet(name = "Bai2", value = { "/bai2/byusername", "/bai2/bytitle", "/bai2/byvideoid", "/bai2/byfavourite" })
+public class Bai2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private Bai2repo repo = new Bai2repo();   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Bai2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/view/view.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		if (uri.contains("byusername")) {
+			String username = request.getParameter("byusername");
+			User u = repo.getOneUser(username);
+			if(u != null) {
+				System.out.println(u.getFavorites().get(0).getId());
+				List<Favorite> list = u.getFavorites();
+				request.setAttribute("listfav", list);
+				
+			}
+		}else if(uri.contains("bytitle")) {
+			String keyword = request.getParameter("keyword");
+			List<Video> list = repo.searchByTitle(keyword);
+			request.setAttribute("listVideoHaveKeyword", list);
+		}else if(uri.contains("byvideoid")) {
+			String videoId = request.getParameter("videoId");
+			List<User> list = repo.searchByVideoId(videoId);
+			if(list.size() != 0) {
+				System.out.println(list.get(0).getId());
+				request.setAttribute("listUser", list);
+			}
+		}
+		request.getRequestDispatcher("/view/view.jsp").forward(request, response);
+	}
+
+}

@@ -1,0 +1,85 @@
+package poly.edu.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import poly.edu.model.User;
+import poly.edu.model.UserDao;
+
+
+@WebServlet(name = "Accounts", value = { "/account/sign-up", "/account/sign-in", "/account/sign-out",
+		"/account/forgot-password", "/account/change-password", "/account/edit-profile" })
+public class Accounts extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       UserDao dao = new UserDao();
+  
+    public Accounts() {
+        super();
+       
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		if(uri.contains("sign-in")) {
+			request.getRequestDispatcher("/view/Signin.jsp").forward(request, response);
+			return;
+		}else if(uri.contains("sign-up")) {
+			request.getRequestDispatcher("/view/Signup.jsp").forward(request, response);
+			return;
+		}
+		request.getRequestDispatcher("/view/Signin.jsp").forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		if (uri.contains("sign-in")) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			User u = dao.findByID(username);
+			System.out.println(password + "/" + u.getPassword());
+			if(!u.getPassword().equalsIgnoreCase(password)) {
+				req.setAttribute("result", "đăng nhập thất bại");
+				req.getRequestDispatcher("/view/Signin.jsp").forward(req, res);
+			}else {
+				req.setAttribute("result", "đăng nhập thành công");
+				req.setAttribute("user", u);
+				req.getRequestDispatcher("/view/ManageAccount.jsp").forward(req, res);
+			}
+			
+		} else if (uri.contains("sign-up")) {
+			Users u = new Users();
+			try {
+				BeanUtils.populate(u, req.getParameterMap());
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(repo.getOne(u.getId()) != null) {
+				req.setAttribute("result", "tên đăng nhập này đã dc sử dụng bởi tài khoản khác");
+			}else {
+				repo.create(u);
+				req.setAttribute("result", "tạo mới thành công");
+				req.getRequestDispatcher("/view/Signin.jsp").forward(req, res);
+			}
+		} else if (uri.contains("edit-profile")) {
+			Users u = new Users();
+			try {
+				BeanUtils.populate(u, req.getParameterMap());
+				repo.update(u);
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			res.getWriter().write("cập nhật thành công");
+			req.setAttribute("result", "cập nhật thành công");
+		}
+	}
+	}
+
+}

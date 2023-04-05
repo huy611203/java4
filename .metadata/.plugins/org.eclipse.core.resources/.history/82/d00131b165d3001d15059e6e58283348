@@ -1,0 +1,98 @@
+package poly.edu.model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the Users database table.
+ * 
+ */
+@Entity
+@Table(name="Users")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private String id;
+
+	private boolean admin;
+
+	private Object email;
+
+	private Object fullname;
+
+	private Object password;
+
+	//bi-directional many-to-one association to Favorite
+	@OneToMany(mappedBy="user")
+	private List<Favorite> favorites;
+
+	public User() {
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public boolean getAdmin() {
+		return this.admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public Object getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(Object email) {
+		this.email = email;
+	}
+
+	public Object getFullname() {
+		return this.fullname;
+	}
+
+	public void setFullname(Object fullname) {
+		this.fullname = fullname;
+	}
+
+	public Object getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(Object password) {
+		this.password = password;
+	}
+
+	public List<Favorite> getFavorites() {
+		return this.favorites;
+	}
+
+	public void setFavorites(List<Favorite> favorites) {
+		this.favorites = favorites;
+	}
+
+	public Favorite addFavorite(Favorite favorite) {
+		getFavorites().add(favorite);
+		favorite.setUser(this);
+
+		return favorite;
+	}
+
+	public Favorite removeFavorite(Favorite favorite) {
+		getFavorites().remove(favorite);
+		favorite.setUser(null);
+
+		return favorite;
+	}
+
+}

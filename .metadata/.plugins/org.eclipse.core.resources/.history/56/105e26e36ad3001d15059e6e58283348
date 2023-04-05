@@ -1,0 +1,18 @@
+package poly.edu.model;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import poly.edu.utils.JpaUtils;
+
+public class VideoDao {
+   public List<Video> findVideoFavoriteUserID(String uID){
+	   EntityManager em = JpaUtils.getEntityManager();
+	   String jpql = "Select o.video from Favorite o where o.user.id = :username";
+	   TypedQuery<Video> query = em.createNamedQuery(jpql, Video.class);
+	   query.setParameter("username", uID);
+	   return query.getResultList();
+   }
+}

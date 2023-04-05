@@ -1,0 +1,234 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<html>
+<meta charset="UTF-8">
+<head>
+<title>Search Videos</title>
+</head>
+<body>
+	<h1>Bài 2</h1>
+	<c:url var =  "url" value ="/Lab6"></c:url>
+	<form action="${url}/SearchVid" method="POST">
+		<label>Title:</label> <input type="text" name="searchvid">
+		<button type="submit">Search</button>
+	</form>
+	<table style="border: 1px solid black">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Views</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${videos}" var="video">
+				<tr>
+					<td>${video.id}</td>
+					<td>${video.title}</td>
+					<td>${video.views}</td>
+					<td>${video.active}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
+	<br>
+	<form action="${url}/SearchUser" method="POST">
+		<label>ID:</label> <input type="text" name="searchUserByVid">
+		<button type="submit">Search</button>
+		
+	</form>
+	<table style="border: 1px solid black">
+			<thead>
+				<tr>
+					<th>Mật Khẩu</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${users}" var="user">
+					<tr>
+						<td>${user.password}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<br> <br>
+	<form action="${url}/SearchVidByF" method="POST">
+		<input type="radio" name ="thichh" value = "yes" >
+			<label> Thich</label><br> 
+			<input type="radio" name ="thichh" value = "no"> 
+			<label> KhongThich</label><br>
+				<input type="submit" />
+	</form>			
+			<table style="border: 1px solid black">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Views</th>
+					<th>Active</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${videofs}" var="videof">
+					<tr>
+						<td>${videof.id}</td>
+						<td>${videof.title}</td>
+						<td>${videof.views}</td>
+						<td>${videof.active}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<br> <br>
+	<form action="${url}/SearchVidByCount" method="POST">	
+	<label>Tìm Theo FC:</label>
+		<button type="submit">Search</button>
+	</form>
+	
+			<table style="border: 1px solid black">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>FavoriteCount</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${rps}" var="rp">
+					<tr>
+						<td>${rp.groupp}</td>
+					<td>${rp.likes}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<h1>Bài 3</h1>
+		<form action="${url}/SearchVid" method="POST">
+		<label>Title:</label> <input type="text" name="searchvid">
+		<button type="submit">Search</button>
+	</form>
+	<table style="border: 1px solid black">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Views</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${videoss}" var="videosss">
+				<tr>
+					<td>${videosss.id}</td>
+					<td>${videosss.title}</td>
+					<td>${videosss.views}</td>
+					<td>${videosss.active}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
+	<form action="${url}/SearchVidByU" method="POST">
+		<label>User ID:</label> <input type="text" name="searchvivi">
+		<button type="submit">Search</button>
+	</form>
+	<table style="border: 1px solid black">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Views</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${vivis}" var="vivi">
+				<tr>
+					<td>${vivi.id}</td>
+					<td>${vivi.title}</td>
+					<td>${vivi.views}</td>
+					<td>${vivi.active}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
+	<form action="${url}/SearchVidByM" method="POST">
+		<label>Từ Ngày:</label> <input type="text" name="searchvimf"> <label>Đến Ngày:</label><input type="text" name="searchvimt">
+		<button type="submit">Search</button>
+	</form>
+	<table style="border: 1px solid black">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Views</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${vivims}" var="vivim">
+				<tr>
+					<td>${vivim.id}</td>
+					<td>${vivim.title}</td>
+					<td>${vivim.views}</td>
+					<td>${vivim.active}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
+	<form action="${url}/SearchVidByIM" method="POST">
+		<input type="checkbox" name ="month" value = "1" >
+		<label> 1</label> 
+		<input type="checkbox" name ="month" value = "2" >
+		<label> 2</label>
+		<input type="checkbox" name ="month" value = "3" >
+		<label> 3</label>
+		<input type="checkbox" name ="month" value = "4" >
+		<label> 4</label>
+		<input type="checkbox" name ="month" value = "5" >
+		<label> 5</label>
+		<input type="checkbox" name ="month" value = "6" >
+		<label> 6</label>
+		<input type="checkbox" name ="month" value = "7" >
+		<label> 7</label>
+		<input type="checkbox" name ="month" value = "8" >
+		<label> 8</label>
+		<input type="checkbox" name ="month" value = "9" >
+		<label> 9</label>
+		<input type="checkbox" name ="month" value = "10" >
+		<label> 10</label>
+		<input type="checkbox" name ="month" value = "11" >
+		<label> 11</label>
+		<input type="checkbox" name ="month" value = "12" >
+		<label> 12</label>
+		<button type="submit">Search</button>
+	</form>
+	<table style="border: 1px solid black">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Views</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${vivimms}" var="vivimm">
+				<tr>
+					<td>${vivimm.id}</td>
+					<td>${vivimm.title}</td>
+					<td>${vivimm.views}</td>
+					<td>${vivimm.active}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</body>
+</html>

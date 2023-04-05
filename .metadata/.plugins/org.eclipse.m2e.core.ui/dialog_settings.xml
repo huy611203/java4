@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="poly.edu"/>
+			<item value="lab2"/>
 			<item value="lab6_demo"/>
 			<item value="lab4"/>
 			<item value="lab3"/>
@@ -9,8 +11,11 @@
 			<item value="edu.poly"/>
 		</list>
 		<list key="name">
+			<item value="lab6"/>
 		</list>
 		<list key="artifactId">
+			<item value="lab6"/>
+			<item value="lab2"/>
 			<item value="lab6_demo"/>
 			<item value="lab4"/>
 			<item value="lab3"/>
@@ -27,7 +32,9 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\java4\lab4"/>
 			<item value="D:\java4"/>
+			<item value="D:\java4\lab5"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

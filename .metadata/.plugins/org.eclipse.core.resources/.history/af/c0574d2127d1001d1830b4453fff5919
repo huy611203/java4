@@ -1,0 +1,54 @@
+package poly.edu.model;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import poly.edu.utils.JpaUtils;
+
+public class UserDao {
+	public int insert(User user) {
+		EntityManager em = JpaUtils.getEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		try {
+			trans.begin();
+			em.persist(user);
+			trans.commit();
+		} catch (Exception e) {
+			trans.rollback();
+			return -1;
+		} finally {
+			em.close();
+		}
+		return 1;
+	}
+	public int update(User user) {
+		EntityManager em = JpaUtils.getEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		try {
+			trans.begin();
+			em.merge(user);
+			trans.commit();
+		} catch (Exception e) {
+			trans.rollback();
+			return -1;
+		} finally {
+			em.close();
+		}
+		return 1;
+	}
+	public int delete(User user) {
+		EntityManager em = JpaUtils.getEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		try {
+			trans.begin();
+			em.remove(user);
+			trans.commit();
+		} catch (Exception e) {
+			trans.rollback();
+			return -1;
+		} finally {
+			em.close();
+		}
+		return 1;
+	}
+}

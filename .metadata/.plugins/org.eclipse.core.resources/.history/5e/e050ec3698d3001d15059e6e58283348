@@ -1,0 +1,79 @@
+package poly.edu.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
+
+
+
+@Entity
+@Table(name="Favorites")
+@NamedQuery(name="Favorite.findAll", query="SELECT f FROM Favorite f")
+public class Favorite implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private long id;
+
+	private Date likeDate;
+
+
+	@ManyToOne
+	@JoinColumn(name="UserId")
+	private User user;
+
+	
+	@ManyToOne
+	@JoinColumn(name="VideoId")
+	private Video video;
+
+	public Favorite() {
+	}
+
+	public Favorite(long id, Date likeDate, User user, Video video) {
+		super();
+		this.id = id;
+		this.likeDate = likeDate;
+		this.user = user;
+		this.video = video;
+	}
+
+	public long getId() {
+		return this.id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getLikeDate() {
+		return this.likeDate;
+	}
+
+	public void setLikeDate(Date likeDate) {
+		this.likeDate = likeDate;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Video getVideo() {
+		return this.video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", likeDate=" + likeDate + ", user=" + user + ", video=" + video + "]";
+	}
+
+}
