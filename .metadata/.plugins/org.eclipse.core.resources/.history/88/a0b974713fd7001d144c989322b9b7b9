@@ -1,0 +1,5 @@
+package dao.iplm;
+
+public class UserDaoIplm {
+
+}

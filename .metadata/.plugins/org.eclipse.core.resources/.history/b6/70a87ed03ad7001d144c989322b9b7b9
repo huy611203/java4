@@ -1,0 +1,12 @@
+package dao;
+
+import model.User;
+
+public interface UserDao {
+
+	User findById(Integer id);
+
+	User findByEmail(String email);
+	User findByUserName(String userName);
+	User findByUserNameAndPassword(String username,String password);
+}
